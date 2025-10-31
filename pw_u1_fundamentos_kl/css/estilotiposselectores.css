@@ -1,0 +1,13 @@
+/*selector por Clase*/
+.titulos {
+    color: red;
+    font-size: 30px;
+    background-color: blue;
+}
+
+/*selector por ID*/
+#id_titulo {
+    color: black;
+    background-color: red;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
