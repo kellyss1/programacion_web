@@ -11,3 +11,37 @@
     background-color: red;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/*selector por Pseudo Clase (eventos)*/
+i:hover {
+    color: green;
+    font-size: 50px;
+}
+
+input:focus {
+    border: 5px solid yellow;
+    background: red;
+}
+
+/*selector por Atributo*/
+[id] {
+    color: brown;
+    font-size: 20px;
+
+}
+
+img[alt="No1"]{
+    width: 80px;
+    height: 50px;
+}
+
+img[alt*="uce"]{
+    width: 100px;
+    height: 70px;
+}
+
+/*selector Universal*/
+* {
+
+    font-family: 'Courier New', Courier, monospace;
+}
