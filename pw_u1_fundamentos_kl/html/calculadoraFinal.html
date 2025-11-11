@@ -14,33 +14,28 @@
     <div id="calculadora">
       <div id="display">0</div>
 
-      <!-- Fila 1 -->
       <button onclick="borrarTodo()">C</button>
       <button onclick="borrarUltimo()">&larr;</button>
-      <button onclick="agregar('%')">%</button>
-      <button onclick="agregar('/')">/</button>
+      <button onclick="agregarOperacion('%')">%</button>
+      <button onclick="agregarOperacion('/')">/</button>
 
-      <!-- Fila 2 -->
-      <button onclick="agregar('7')">7</button>
-      <button onclick="agregar('8')">8</button>
-      <button onclick="agregar('9')">9</button>
-      <button onclick="agregar('*')">*</button>
+      <button onclick="agregarNumero('7')">7</button>
+      <button onclick="agregarNumero('8')">8</button>
+      <button onclick="agregarNumero('9')">9</button>
+      <button onclick="agregarOperacion('*')">*</button>
 
-      <!-- Fila 3 -->
-      <button onclick="agregar('4')">4</button>
-      <button onclick="agregar('5')">5</button>
-      <button onclick="agregar('6')">6</button>
-      <button onclick="agregar('-')">-</button>
+      <button onclick="agregarNumero('4')">4</button>
+      <button onclick="agregarNumero('5')">5</button>
+      <button onclick="agregarNumero('6')">6</button>
+      <button onclick="agregarOperacion('-')">-</button>
 
-      <!-- Fila 4 -->
-      <button onclick="agregar('1')">1</button>
-      <button onclick="agregar('2')">2</button>
-      <button onclick="agregar('3')">3</button>
-      <button onclick="agregar('+')">+</button>
+      <button onclick="agregarNumero('1')">1</button>
+      <button onclick="agregarNumero('2')">2</button>
+      <button onclick="agregarNumero('3')">3</button>
+      <button onclick="agregarOperacion('+')">+</button>
 
-      <!-- Fila 5 -->
-      <button onclick="agregar('0')">0</button>
-      <button onclick="agregar('.')">.</button>
+      <button onclick="agregarNumero('0')">0</button>
+      <button onclick="agregarNumero('.')">.</button>
       <button class="column-2" onclick="calcular()">=</button>
     </div>
   </div>

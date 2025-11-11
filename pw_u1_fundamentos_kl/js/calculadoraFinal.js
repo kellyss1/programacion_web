@@ -1,36 +1,99 @@
-// Guarda lo que el usuario escribe
 let display = document.getElementById("display");
+let numeroActual = "";   // lo que estás escribiendo
+let numeroAnterior = ""; // el número antes del operador
+let operacion = null;    // operador actual (+, -, *, /, %)
 
-// Función para agregar números o símbolos al display
-function agregar(valor) {
-  if (display.innerText === "0") {
-    display.innerText = valor; // si está en 0, reemplaza
+// Agregar número al display
+function agregarNumero(num) {
+  // Evita escribir más de un punto
+  if (num === "." && numeroActual.includes(".")) return;
+
+  // Si se presiona "." primero, mostrar "0."
+  if (num === "." && numeroActual === "") {
+    numeroActual = "0.";
   } else {
-    display.innerText += valor; // si ya hay algo, añade
+    numeroActual += num;
   }
+
+  mostrarEnDisplay(numeroActual);
 }
 
-// Función para borrar todo
-function borrarTodo() {
-  display.innerText = "0";
-}
 
-// Función para borrar el último carácter
-function borrarUltimo() {
-  let texto = display.innerText;
-  if (texto.length > 1) {
-    display.innerText = texto.slice(0, -1); // quita el último
-  } else {
-    display.innerText = "0"; // si ya no hay nada, deja en 0
+function agregarOperacion(op) {
+  // Si no hay número actual ni anterior, no hace nada
+  if (numeroActual === "" && numeroAnterior === "") return;
+
+  // Si no hay número actual pero ya hay uno anterior,
+  // significa que queremos CAMBIAR la operación
+  if (numeroActual === "" && numeroAnterior !== "") {
+    operacion = op; // solo cambiamos el operador
+    return;
   }
+
+  // Si ya había un número anterior y un actual, calculamos primero
+  if (numeroAnterior !== "" && numeroActual !== "") {
+    calcular();
+  }
+
+  // Guardamos la nueva operación
+  operacion = op;
+  numeroAnterior = numeroActual;
+  numeroActual = "";
 }
 
-// Función para calcular el resultado
+
+// Mostrar texto en la pantalla
+function mostrarEnDisplay(valor) {
+  display.innerText = valor;
+}
+
+// Calcular el resultado
 function calcular() {
-  try {
-    let resultado = eval(display.innerText); // eval evalúa la operación como texto
-    display.innerText = resultado;
-  } catch (error) {
-    display.innerText = "Error";
+  let resultado = 0;
+  let n1 = parseFloat(numeroAnterior);
+  let n2 = parseFloat(numeroActual);
+
+  if (isNaN(n1) || isNaN(n2)) return;
+
+  switch (operacion) {
+    case "+": resultado = n1 + n2; break;
+    case "-": resultado = n1 - n2; break;
+    case "*": resultado = n1 * n2; break;
+    case "/":
+      resultado = n2 === 0 ? "Error" : n1 / n2;
+      break;
+    case "%":
+      resultado = (n1 * n2) / 100;
+      break;
+    default:
+      return;
+  }
+
+  mostrarEnDisplay(resultado);
+  numeroActual = resultado.toString();
+  numeroAnterior = "";
+  operacion = null;
+}
+
+// Borrar todo
+function borrarTodo() {
+  numeroActual = "";
+  numeroAnterior = "";
+  operacion = null;
+  mostrarEnDisplay("0");
+}
+
+function borrarUltimo() {
+  // Si no hay número actual, no hacemos nada
+  if (numeroActual === "") return;
+
+  // Quitamos el último carácter
+  numeroActual = numeroActual.slice(0, -1);
+
+  // Si ya no queda nada, mostramos 0
+  if (numeroActual === "") {
+    mostrarEnDisplay("0");
+  } else {
+    mostrarEnDisplay(numeroActual);
   }
 }
